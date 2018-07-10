@@ -1,4 +1,4 @@
-# TensorFlow library
+# TensorFlow Model Library
 
 A collection of ML models built with the TensorFlow api package for python3:
 
