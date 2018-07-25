@@ -66,7 +66,7 @@ lihc_vir_fit <- glmnet(x=lihc_mat_trn, y=response_trn, family = "multinomial", a
 # Perform cross-validation to determine the correct lambda of m.s.e to extract term coefficents for:
 lmins <- NULL
 for(i in 1:100){
-  lihc_vir_cv.fit <- cv.glmnet(x=lihc_mat, y=response, family = "multinomial", nfolds=20, parallel = T) # 20-fold CV to calc. lambda
+  lihc_vir_cv.fit <- cv.glmnet(x=lihc_mat_trn, y=response_trn, family = "multinomial", nfolds=5, parallel = T) # 20-fold CV to calc. lambda
   lmins <- c(lmins, lihc_vir_cv.fit$lambda.min)
 }
 # Calc lmin as average from runs:
@@ -79,7 +79,7 @@ test <- predict(lihc_vir_fit, newx=lihc_mat_test, s=lmin, type="class")
 predict_acc <- sum(test == true_response, na.rm=T)/length(true_response)
 predict_acc
 
-# A relatively weak 32.5% accuracy
+# A relatively weak 58.1% accuracy (Just over a coin flip)
 
 
 
